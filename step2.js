@@ -1,14 +1,14 @@
 const fs = require("fs");
 const axios = require("axios");
+const process = require("process");
 
-function readFile(file) {
+function cat(file) {
 	fs.readFile(file, "utf8", (error, data) => {
 		if (error) {
 			console.log(`Error reading ${file}:`);
 			console.log(error);
 			process.kill(1);
 		}
-
 		console.log(data);
 	});
 }
@@ -30,6 +30,6 @@ for (let arg of args) {
 	if (arg.substring(0, 4) === "http") {
 		webCat(arg);
 	} else {
-		readFile(arg);
+		cat(arg);
 	}
 }
